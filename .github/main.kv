@@ -1,0 +1,113 @@
+#:kivy 2.1.0
+#:import utils kivy.utils
+BoxLayout:
+    orientation: 'vertical'
+    MDToolbar:
+        id : toolbar
+        title: "Carnet de voyages"
+        right_action_items: [['text-search', lambda x: app.search_menu.open()]]
+        md_bg_color:  .7, .8, .8, 1
+
+    MDBottomNavigation:
+        id: panel
+        selected_color_background: 0, 0, 1, .4
+        text_color_active: 0, 0, 0, 1
+        panel_color: .7, .8, .8, 1
+        MDBottomNavigationItem:
+            # this is a home screen 
+            id: home_nav
+            name: "Home"
+            text: "Home"
+            icon: "home"
+            Image:
+                source: '/Users/wissemcherifi/Desktop/App_voyage_python/travel.png'
+                allow_stretch: False
+                keep_ratio: False
+            MDFloatLayout:
+                MDRoundFlatButton:
+                    pos_hint:{"x":0.55, "y":0.08}
+                    size_hint: (None,None)
+                    font_size : 23
+                    text:"Nouveau point d'interet"
+                    on_press: app.show_confirmation_dialog_pt_interet()
+            MDFloatLayout:
+                MDRoundFlatButton:
+                    pos_hint:{"x":0.10, "y":0.08}
+                    size_hint: (None,None)
+                    font_size : 23
+                    text:'Commencer un voyage'
+                    on_press: app.show_confirmation_dialog_voyage()
+       
+        MDBottomNavigationItem:
+            # this is a map screen
+            id: map_nav 
+            text: "Map"
+            name: "Map"
+            icon: "google-maps"
+            MapView:
+                lat: 48
+                lon: 2
+                zoom: 5
+        MDBottomNavigationItem:
+            id: search_nav
+            # this is a search screen 
+            text: "Navigation"
+            name: "Navigation"
+            icon: "account-search"
+   
+
+#/Users/wissemcherifi/Desktop/App_voyage_python/travel.png
+#<TextInput>:
+   # font_size:25
+    #multiline:False
+    #size_hint_y: None
+    #height: 0
+    #background_color: 0, 0, 0, 0
+    #id: reEnter
+
+<Content_voyage>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "145dp"
+
+    MDTextField:
+        id: nom_input
+        hint_text: "Nom du voyage"
+        on_text: app.nom_input = self.text
+    
+    MDTextField:
+        id: date_input
+        hint_text: "Date de début"
+        on_text: app.nom_input = self.text
+
+
+<Content_point_interet>
+    orientation: "vertical"
+    spacing: "0dp"
+    size_hint_y: None
+    height: "300dp"
+
+    MDTextField:
+        id: nom_input
+        hint_text: "Nom"
+
+    MDTextField:
+        id: type_input
+        hint_text: "Type"
+    
+    MDTextField:
+        id: commentaire_input
+        hint_text: "Commentaire"
+
+    MDTextField:
+        id: date_input
+        hint_text: "Date"
+
+    MDTextField:
+        id: note_input
+        hint_text: "Note"
+    
+
+
+
